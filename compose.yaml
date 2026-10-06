@@ -1,0 +1,38 @@
+services:
+  music-api:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    env_file: .env.cloud
+    volumes:
+      - music-data:/data
+    ports:
+      - "127.0.0.1:8010:8010"
+    healthcheck:
+      test: ["CMD", "python", "-c", "from backend.public_url import require_public_origin; from urllib.request import urlopen; require_public_origin(); assert urlopen('http://127.0.0.1:8010/api/health', timeout=3).status == 200"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+  web:
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      music-api:
+        condition: service_healthy
+    env_file: .env.cloud
+    environment:
+      MUSIC_FRONTEND_DIR: /srv
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy-data:/data
+      - caddy-config:/config
+volumes:
+  music-data:
+  caddy-data:
+  caddy-config:
