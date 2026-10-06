@@ -1,0 +1,5 @@
+# Optional CPU evaluation, matching the verified local environment.
+# Install torch with --index-url https://download.pytorch.org/whl/cpu first.
+torch==2.13.0
+transformers==5.15.1
+-r requirements-clap-extra.lock

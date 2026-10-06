@@ -1,0 +1,26 @@
+# Pinned CPU evaluator dependencies from the verified local CLAP environment.
+# Base API dependencies remain pinned by the existing requirements.lock.
+charset-normalizer==3.4.9
+urllib3==2.7.0
+requests==2.34.2
+transformers==5.15.1
+tqdm==4.69.0
+safetensors==0.8.0
+typer==0.27.1
+rich==15.0.0
+pygments==2.20.0
+markdown-it-py==4.2.0
+mdurl==0.1.2
+shellingham==1.5.4
+tokenizers==0.22.2
+huggingface_hub==1.28.0
+pyyaml==6.0.3
+fsspec==2026.7.0
+filelock==3.32.3
+regex==2026.7.19
+jinja2==3.1.6
+markupsafe==3.0.3
+networkx==3.1
+sympy==1.14.0
+mpmath==1.3.0
+setuptools==84.0.0
